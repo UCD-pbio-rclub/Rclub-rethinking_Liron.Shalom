@@ -1,10 +1,5 @@
----
-title: "Rclub homework"
-author: "Liron"
-output: 
-  html_document: 
-    keep_md: yes
----
+# Rclub homework
+Liron  
 **2E1** 
 answer: 2  
 **2E2** 
@@ -33,7 +28,8 @@ Hence, probability to produce black x black = 2/3.
 
 1. WWW
 
-``` {r}
+
+```r
 p_grid <- seq( from=0 , to=1 , length.out=20 )
 
 
@@ -51,12 +47,14 @@ posterior <- unstd.posterior / sum(unstd.posterior)
 plot( p_grid , posterior , type="b" ,
       xlab="probability of water" , ylab="posterior probability" )
 mtext( "20 points" )
-
 ```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-1-1.png)
 
 2. WWWL
 
-``` {r}
+
+```r
 p_grid <- seq( from=0 , to=1 , length.out=20 )
 
 
@@ -74,12 +72,14 @@ posterior <- unstd.posterior / sum(unstd.posterior)
 plot( p_grid , posterior , type="b" ,
       xlab="probability of water" , ylab="posterior probability" )
 mtext( "20 points" )
-
 ```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-2-1.png)
 
 3. LWWLWWW
 
-``` {r}
+
+```r
 p_grid <- seq( from=0 , to=1 , length.out=20 )
 
 
@@ -97,15 +97,17 @@ posterior <- unstd.posterior / sum(unstd.posterior)
 plot( p_grid , posterior , type="b" ,
       xlab="probability of water" , ylab="posterior probability" )
 mtext( "20 points" )
-
 ```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-3-1.png)
 
 
 **2M2**
 
 1. WWW
 
-``` {r}
+
+```r
 p_grid <- seq( from=0 , to=1 , length.out=20 )
 
 
@@ -123,12 +125,14 @@ posterior <- unstd.posterior / sum(unstd.posterior)
 plot( p_grid , posterior , type="b" ,
       xlab="probability of water" , ylab="posterior probability" )
 mtext( "20 points" )
-
 ```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-4-1.png)
 
 2. WWWL
 
-``` {r}
+
+```r
 p_grid <- seq( from=0 , to=1 , length.out=20 )
 
 
@@ -146,12 +150,14 @@ posterior <- unstd.posterior / sum(unstd.posterior)
 plot( p_grid , posterior , type="b" ,
       xlab="probability of water" , ylab="posterior probability" )
 mtext( "20 points" )
-
 ```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-5-1.png)
 
 3. LWWLWWW
 
-``` {r}
+
+```r
 p_grid <- seq( from=0 , to=1 , length.out=20 )
 
 
@@ -169,8 +175,9 @@ posterior <- unstd.posterior / sum(unstd.posterior)
 plot( p_grid , posterior , type="b" ,
       xlab="probability of water" , ylab="posterior probability" )
 mtext( "20 points" )
-
 ```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-6-1.png)
 
 **2M5**
 answer:Conditional on seeing black, # ways that a card could produce:  
@@ -262,7 +269,8 @@ probability of panda A coditional on A positive (AP) with birth data:
 
 p(A|AP) = (0.8 * 0.3529) / 0.575 = 0.49   
 
-``` {r}
+
+```r
 p_grid <- seq( from=0 , to=1 , length.out=1000 ) 
 prior <- rep( 1 , 1000 )
 likelihood <- dbinom( 6 , size=9 , prob=p_grid )
@@ -274,50 +282,127 @@ samples <- sample( p_grid , prob=posterior , size=1e4 , replace=TRUE )
 
 **3E1**
 
-``` {r}  
+
+```r
 sum( samples < 0.2 ) / 1e4
+```
+
+```
+## [1] 5e-04
 ```
 
 **3E2**
 
-``` {r}  
+
+```r
 sum( samples > 0.8 ) / 1e4
 ```
 
+```
+## [1] 0.1117
+```
+
 **3E3**
-``` {r}  
+
+```r
 sum( samples > 0.2 & samples < 0.8 ) / 1e4
+```
+
+```
+## [1] 0.8878
 ```
 
 **3E4**
 
-``` {r}
+
+```r
 quantile( samples , 0.2 )
+```
+
+```
+##       20% 
+## 0.5195195
 ```
 
 **3E5**
  
-``` {r}
+
+```r
 1 - (quantile( samples , 0.8 ))
+```
+
+```
+##       80% 
+## 0.2432432
 ```
 
 **3E6**
 
-``` {r}
+
+```r
 library(rethinking)
+```
+
+```
+## Loading required package: rstan
+```
+
+```
+## Warning: package 'rstan' was built under R version 3.2.3
+```
+
+```
+## Loading required package: ggplot2
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.2.3
+```
+
+```
+## rstan (Version 2.9.0-3, packaged: 2016-02-11 15:54:41 UTC, GitRev: 05c3d0058b6a)
+```
+
+```
+## For execution on a local, multicore CPU with excess RAM we recommend calling
+## rstan_options(auto_write = TRUE)
+## options(mc.cores = parallel::detectCores())
+```
+
+```
+## Loading required package: parallel
+```
+
+```
+## rethinking (Version 1.58)
+```
+
+```r
 HPDI( samples , prob=0.66 )
+```
+
+```
+##     |0.66     0.66| 
+## 0.5205205 0.7847848
 ```
 
 **3E7**
 
-``` {r}
+
+```r
 library(rethinking)
 PI( samples , prob=0.66)
 ```
 
+```
+##       17%       83% 
+## 0.5005005 0.7687688
+```
+
 **3M1**
 
-``` {r}
+
+```r
 p_grid <- seq( from=0 , to=1 , length.out=1000 ) 
 prior <- rep( 1 , 1000 )
 likelihood <- dbinom( 8 , size=15 , prob=p_grid )
@@ -327,10 +412,13 @@ plot( p_grid , posterior , type="b" ,
       xlab="probability of water" , ylab="posterior probability" )
 ```
 
+![](Rclub_homework_files/figure-html/unnamed-chunk-15-1.png)
+
 
 **3M2**
 
-``` {r}
+
+```r
 p_grid <- seq( from=0 , to=1 , length.out=1000 ) 
 prior <- rep( 1 , 1000 )
 likelihood <- dbinom( 8 , size=15 , prob=p_grid )
@@ -338,30 +426,66 @@ posterior <- likelihood * prior
 posterior <- posterior / sum(posterior)
 samples <- sample( p_grid , prob=posterior , size=1e4 , replace=TRUE )
 plot( samples )
+```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-16-1.png)
+
+```r
 library(rethinking)
 dens( samples )
+```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-16-2.png)
+
+```r
 HPDI( samples , prob=0.90 )
+```
+
+```
+##      |0.9      0.9| 
+## 0.3383383 0.7317317
 ```
 
 **3M3**
 
-``` {r}
+
+```r
 dummy_w <- rbinom( 1e5 , size=15 , prob=0.7 )
 simplehist( dummy_w , xlab="dummy water count" )
+```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-17-1.png)
+
+```r
 dbinom( 8 , size=15 , prob=0.7 )
+```
+
+```
+## [1] 0.08113003
 ```
 
 **3M4**
 
-``` {r}
+
+```r
 w <- rbinom( 1e5 , size=9 , prob=samples )
 simplehist(w)
+```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-18-1.png)
+
+```r
 sum (w == 6) / 1e5
+```
+
+```
+## [1] 0.17609
 ```
 
 **3M5(3M1)**
 
-``` {r}
+
+```r
 p_grid <- seq( from=0 , to=1 , length.out=1000 ) 
 prior <- ifelse( p_grid < 0.5 , 0 , 1 )
 likelihood <- dbinom( 8 , size=15 , prob=p_grid )
@@ -371,10 +495,13 @@ plot( p_grid , posterior , type="b" ,
       xlab="probability of water" , ylab="posterior probability" )
 ```
 
+![](Rclub_homework_files/figure-html/unnamed-chunk-19-1.png)
+
 
 **3M5(3M2)**
 
-``` {r}
+
+```r
 p_grid <- seq( from=0 , to=1 , length.out=1000 ) 
 prior <- prior <- ifelse( p_grid < 0.5 , 0 , 1 )
 likelihood <- dbinom( 8 , size=15 , prob=p_grid )
@@ -382,30 +509,66 @@ posterior <- likelihood * prior
 posterior <- posterior / sum(posterior)
 samples <- sample( p_grid , prob=posterior , size=1e4 , replace=TRUE )
 plot( samples )
+```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-20-1.png)
+
+```r
 library(rethinking)
 dens( samples )
+```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-20-2.png)
+
+```r
 HPDI( samples , prob=0.90 )
+```
+
+```
+##      |0.9      0.9| 
+## 0.5005005 0.7147147
 ```
 
 **3M5(3M3)**
 
-``` {r}
+
+```r
 dummy_w <- rbinom( 1e5 , size=15 , prob=0.7 )
 simplehist( dummy_w , xlab="dummy water count" )
+```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-21-1.png)
+
+```r
 dbinom( 8 , size=15 , prob=0.7 )
+```
+
+```
+## [1] 0.08113003
 ```
 
 **3M5(3M4)**
 
-``` {r}
+
+```r
 w <- rbinom( 1e5 , size=9 , prob=samples )
 simplehist(w)
+```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-22-1.png)
+
+```r
 sum (w == 6) / 1e5
+```
+
+```
+## [1] 0.23333
 ```
 
 **3H1**
 
-``` {r}
+
+```r
 birth1 <- c(1,0,0,0,1,1,0,1,0,1,0,0,1,1,0,1,1,0,0,0,1,0,0,0,1,0,
 0,0,0,1,1,1,0,1,0,1,1,1,0,1,0,1,1,0,1,0,0,1,1,0,1,0,0,0,0,0,0,0,
 1,1,0,1,0,0,1,0,0,0,1,0,0,1,1,1,1,0,1,0,1,1,1,1,1,0,0,1,0,1,1,0,
@@ -426,11 +589,14 @@ plot( p_grid , posterior , type="b" ,
       xlab="probability of boy" , ylab="posterior probability" )
 ```
 
+![](Rclub_homework_files/figure-html/unnamed-chunk-23-1.png)
+
 I think that the parameter that maximizes the postirior probability is the size or number of observation.
 
 **3H2**
 
-``` {r}
+
+```r
 boys <- sum(birth1) + sum(birth2)
 
 p_grid <- seq( from=0 , to=1 , length.out=1000 ) 
@@ -440,23 +606,58 @@ posterior <- likelihood * prior
 posterior <- posterior / sum(posterior)
 samples <- sample( p_grid , prob=posterior , size=1e4 , replace=TRUE )
 plot( samples )
+```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-24-1.png)
+
+```r
 library(rethinking)
 dens( samples )
+```
+
+![](Rclub_homework_files/figure-html/unnamed-chunk-24-2.png)
+
+```r
 HPDI( samples , prob=0.5 )
+```
+
+```
+##      |0.5      0.5| 
+## 0.5305305 0.5765766
+```
+
+```r
 HPDI( samples , prob=0.89 )
+```
+
+```
+##     |0.89     0.89| 
+## 0.4964965 0.6076076
+```
+
+```r
 HPDI( samples , prob=0.97 )
+```
+
+```
+##     |0.97     0.97| 
+## 0.4764765 0.6266266
 ```
 
 **3H3**
 
-``` {r}
+
+```r
 dummy_b <- rbinom( 1e4 , size=200 , prob=samples )
 dens( dummy_b )
 ```
 
+![](Rclub_homework_files/figure-html/unnamed-chunk-25-1.png)
+
 **3H4**
 
-``` {r}
+
+```r
 p_grid <- seq( from=0 , to=1 , length.out=1000 ) 
 prior <- rep( 1 , 1000 )
 likelihood <- dbinom( sum(birth1) , size=(length(birth1)) , prob=p_grid )
@@ -467,10 +668,16 @@ dummy_b1 <- rbinom( 1e4 , size=100 , prob=samples )
 dens( dummy_b1 )
 ```
 
+![](Rclub_homework_files/figure-html/unnamed-chunk-26-1.png)
+
 Actual number of boys in birth1
 
-```{r}
+
+```r
 sum(birth1)
 ```
 
+```
+## [1] 51
+```
 
