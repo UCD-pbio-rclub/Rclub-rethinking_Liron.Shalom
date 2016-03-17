@@ -681,3 +681,24 @@ sum(birth1)
 ## [1] 51
 ```
 
+
+**4E1**
+
+The likelyhood is the first line
+
+**4E2**
+
+Two parameters: mu and sigma
+
+**4E3**
+
+Pr(mu, sigma | yi) = (Pr (yi | mu, sigma) * Pr(mu ,sigma)) / Pr (yi)
+
+**4E4**
+
+The linear model is the second line
+
+**4E5**
+
+Three parameters: alpha beta abd sigma
+
