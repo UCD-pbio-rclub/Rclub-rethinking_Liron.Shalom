@@ -492,5 +492,28 @@ The linear model is the second line
 
 **4E5**
 
-Three parameters: alpha beta abd sigma
+Three parameters: alpha beta and sigma
+
+**4M1**
+
+```{r}
+sample_mu <- rnorm( 1e4 , 0 , 10 ) 
+sample_sigma <- runif( 1e4 , 0 , 10 )
+prior_h <- rnorm( 1e4 , sample_mu , sample_sigma )
+dens( prior_h )
+```
+
+**4M2**
+
+height ~ dnorm(mu,sigma)
+mu ~ dnorm(0,10)
+sigma ~ dunif(0,10)
+
+**4M3**
+
+hi ~ Normal(mui; sigma) 
+mui = alpha + beta*xi 
+alpha ~ Normal(0, 50) 
+beta ~ Uniform(0, 10) 
+sigma ~ Uniform(0, 50) 
 
